@@ -1,0 +1,156 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+@font-face {
+  font-family: 'ef_cuisinesregular';
+  src: font_url('efcuisines-regular-webfont.eot');
+  src: font_url('efcuisines-regular-webfont.eot?#iefix') format('embedded-opentype'),
+  font_url('efcuisines-regular-webfont.woff') format('woff'),
+  font_url('efcuisines-regular-webfont.ttf') format('truetype'),
+  font_url('efcuisines-regular-webfont.svg#ef_cuisinesregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+}
+#genre_icon {
+  font-family: 'ef_cuisinesregular';
+  font-size: 20pt;
+}
+
+#wrapper {
+  width: 1024px;
+  margin: auto;
+  background-color: #ECEFF1;
+  font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+  #header {
+    background-image: image_url('header.png') ;
+    width:100%;
+    height: 250px;
+    text-align:center;
+
+    H1 {
+      padding-top: 60px;
+      font-size: 32pt;
+      color: #FFFFFF;
+      letter-spacing: 0;
+    }
+    H2 {
+      font-size: 16pt;
+      color: #FFFFFF;
+      letter-spacing: 0;
+    }
+    #findWrapperDiv{
+      margin: auto;
+      width:30%;
+    }
+
+  }
+  #filtersWrapperDiv{
+    background-color: #F54343;
+    height:91px;
+    width:100%;
+
+    #filtersContentDiv {
+      margin: auto;
+      width:90%;
+    }
+  }
+
+  .we_eat_filter {
+    float:left;
+    padding: 10px;
+    input , select{
+      /*-webkit-appearance:none;*/
+      border-radius: 0px;
+      padding: 10px;
+      margin-top: -10px;
+      font-size: 10pt;
+      min-width: 260px;
+      line-height: 20pt;
+      height: 40px;
+
+    }
+
+
+
+    H3 {
+      color: #FFFFFF;
+      font-size: 8pt;
+    }
+  }
+
+
+
+
+  #restaurantsList {
+    min-height: 600px;
+
+    .listWrapper {
+      float: left;
+      .restaurant {
+        background-color: #FFF;
+        width: 300px;
+        height: 100px;
+        overflow: hidden;
+        margin: 10px;
+
+        vertical-align: middle;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        .icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-family: 'ef_cuisinesregular';
+          font-size: 36px;
+          width: 40px;
+          height: 100px;
+          overflow: hidden;
+          float: left;
+          color: green;
+        }
+        .details {
+          padding: 10px;
+          span {
+            font-size: 12pt;
+          }
+          div {
+            font-size: 8pt;
+          }
+          .tenbis {
+            background-image: image_url('tenbis.png');
+            width: 14px;
+            height: 10px;
+            margin-left: 4px;
+          }
+          .hidden {
+            display: none;
+          }
+        }
+
+      }
+    }
+    .mapWrapper {
+
+    }
+  }
+
+
+
+
+}

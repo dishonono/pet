@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Restaurants</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Genre</th>
+      <th>Rating</th>
+      <th>Ten bis</th>
+      <th>Max delivey time</th>
+      <th>Address</th>
+      <th>Geo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @restaurants.each do |restaurant| %>
+      <tr>
+        <td><%= restaurant.name %></td>
+        <td><%= restaurant.genre.name %></td>
+        <td><%= restaurant.rating %></td>
+        <td><%= restaurant.ten_bis %></td>
+        <td><%= restaurant.max_delivey_time %></td>
+        <td><%= restaurant.address %></td>
+        <td><%= restaurant.geo %></td>
+        <td><%= link_to 'Show', admin_restaurant_path(restaurant) %></td>
+        <td><%= link_to 'Edit', edit_admin_restaurant_path(restaurant) %></td>
+        <td><%= link_to 'Destroy',  admin_restaurant_path(restaurant), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Restaurant', new_admin_restaurant_path %><br>
+<%= link_to 'View/Edit Genres', admin_genres_path %>
