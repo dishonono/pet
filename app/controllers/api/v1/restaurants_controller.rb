@@ -1,49 +1,52 @@
 module Api::V1
-  class RestaurantsController < ApplicationController
+  class RestaurantsController < APIControllerBase
+
+    before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
     #GET /restaurants
     def index
       @restaurants = Restaurant.all
-      respond_to do |format|
-        format.json { render json: @restaurants.to_json }
-      end
+      render json: @restaurants
+    end
+
+    # GET /restaurants/1
+    def show
+      render json: @restaurant
     end
 
 
     # POST /restaurants
     def create
       @restaurant = Restaurant.new(restaurant_params)
-
-      respond_to do |format|
-        if @restaurant.save
-          format.json { render :show, status: :created, location: @restaurant }
-        else
-          format.json { render json: @restaurant.errors, status: :unprocessable_entity }
-        end
+      if @restaurant.save
+        render json: @restaurant
+      else
+        render json: {'errors': @restaurant.errors}, status: :unprocessable_entity
       end
+
     end
 
     # PATCH/PUT /restaurants/1
     def update
-      respond_to do |format|
         if @restaurant.update(restaurant_params)
-          format.json { render :show, status: :ok, location: @restaurant }
+          render json: @restaurant
         else
-          format.json { render json: @restaurant.errors, status: :unprocessable_entity }
+          render json: {'errors': @restaurant.errors}, status: :unprocessable_entity
         end
-      end
     end
 
     # DELETE /restaurants/1
     def destroy
       @restaurant.destroy
-      respond_to do |format|
-         format.json { head :no_content }
-      end
+      render json: @restaurant
     end
 
     private
       # Use callbacks to share common setup or constraints between actions.
+      def set_restaurant
+        @restaurant = Restaurant.find(params[:id])
+      end
+
       # Never trust parameters from the scary internet, only allow the white list through.
       def restaurant_params
         params.require(:restaurant).permit(:name, :genre_id, :rating, :ten_bis, :max_delivey_time, :address, :geo)

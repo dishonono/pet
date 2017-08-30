@@ -82,7 +82,7 @@ export default class App extends React.Component {
                                          genres={this.state.genres}
                                          filters={this.state.filters}
                         />
-                        <div id="mapWrapper"></div>
+
 
                     </div>
 

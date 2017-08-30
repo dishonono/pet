@@ -93,10 +93,14 @@
     }
   }
 
-  #canvas{
+
+
+
+  #restaurantsList {
     min-height: 600px;
 
-    #restaurantsList {
+    .listWrapper {
+      float: left;
       .restaurant {
         background-color: #FFF;
         width: 300px;
@@ -135,17 +139,18 @@
             margin-left: 4px;
           }
           .hidden {
-            display:none;
+            display: none;
           }
         }
 
       }
-
     }
-
-    #mapWrapper {
+    .mapWrapper {
 
     }
   }
+
+
+
 
 }

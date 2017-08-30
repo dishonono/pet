@@ -41,7 +41,7 @@ export default class RestaurantsList extends React.Component {
 
         return (
             <div id={this.props.id}>
-
+              <div className="listWrapper">
                 {filteredRestaurants.map(rest => {
                         let icon = 'F';
                         if (rest.genre_id) {
@@ -59,6 +59,10 @@ export default class RestaurantsList extends React.Component {
                                            rating={rest.rating}/>
                     }
                 )}
+              </div>
+              <div className="mapWrapper">
+                  TODO!
+              </div>
             </div>
         );
     }
