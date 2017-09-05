@@ -1,4 +1,4 @@
-<%= form_with(model: genre, url: admin_genre_path(genre),  local: true) do |form| %>
+<%= form_with(model: genre, url: url,  local: true) do |form| %>
   <% if genre.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(genre.errors.count, "error") %> prohibited this genre from being saved:</h2>

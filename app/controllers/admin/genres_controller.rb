@@ -29,7 +29,7 @@ module Admin
 
       respond_to do |format|
         if @genre.save
-          format.html {redirect_to @genre, notice: 'Genre was successfully created.'}
+          format.html {redirect_to admin_genre_path(@genre), notice: 'Genre was successfully created.'}
         else
           format.html {render :new}
         end
