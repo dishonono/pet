@@ -43,7 +43,7 @@ module Api::V1
     private
       # Use callbacks to share common setup or constraints between actions.
 
-      def set_review
+      def set_restaurant
         @restaurant = Restaurant.find(params[:restaurant_id])
       end
 

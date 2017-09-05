@@ -19,7 +19,7 @@ export default class Restaurant extends React.Component {
                 <div className="details">
                     <span>{this.props.name}</span>
                     <img className={this.props.ten_bis ? "tenbis" : "hidden"}></img><br/>
-                    <div>Rating: {"★".repeat(this.props.rating)}</div>
+                    <div>Rating: {this.props.rating ? "★".repeat(this.props.rating): "No Reviews Yet"}</div>
 
                 </div>
             </div>
