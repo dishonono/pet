@@ -26,13 +26,10 @@
   font-style: normal;
 
 }
-#genre_icon {
-  font-family: 'ef_cuisinesregular';
-  font-size: 20pt;
-}
+
 
 #wrapper {
-  width: 1024px;
+  max-width: 1024px;
   margin: auto;
   background-color: #ECEFF1;
   font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;
@@ -41,7 +38,13 @@
     width:100%;
     height: 250px;
     text-align:center;
-
+    #addBtn {
+      background-image: image_url('add.png') ;
+      width: 28px;
+      height: 28px;
+      float: right;
+      margin: 20px;
+    }
     H1 {
       padding-top: 60px;
       font-size: 32pt;
@@ -56,40 +59,46 @@
     #findWrapperDiv{
       margin: auto;
       width:30%;
+      .we_eat_filter {
+        width:100%;
+      }
     }
 
   }
   #filtersWrapperDiv{
     background-color: #F54343;
-    height:91px;
+    min-height:91px;
     width:100%;
 
     #filtersContentDiv {
       margin: auto;
       width:90%;
+      text-align: center;
+      .we_eat_filter {
+        width:25%;
+      }
     }
   }
 
   .we_eat_filter {
-    float:left;
+    display: inline-block;
     padding: 10px;
+    text-align: left;
     input , select{
       /*-webkit-appearance:none;*/
       border-radius: 0px;
       padding: 10px;
       margin-top: -10px;
       font-size: 10pt;
-      min-width: 260px;
+      min-width: 100px;
+      width: 100%;
       line-height: 20pt;
       height: 40px;
-
     }
-
-
-
     H3 {
       color: #FFFFFF;
       font-size: 8pt;
+
     }
   }
 
@@ -98,9 +107,9 @@
 
   #restaurantsList {
     min-height: 600px;
-
+    display: flex;
     .listWrapper {
-      float: left;
+      order: 1;
       .restaurant {
         background-color: #FFF;
         width: 300px;
@@ -146,11 +155,61 @@
       }
     }
     .mapWrapper {
-
+        background-color: black;
+        height: 600px;
+        width: 100%;
+        order: 2;
+        margin-top: 10px;
     }
+    // .mapWrapper:after{
+    // clear: both;
+    // content: "";
+    // display: block;
+    // }
+}
+
+
+
+}
+
+#addRestaurantForm {
+  text-align: left;
+
+  input,select {
+    margin-bottom: 10px;
+    display: block;
+    width: 80%;
+    font-size: 10pt;
+    height: 25px;
+    background-color: white;
+    border-radius: 0px;
   }
+  select {
+    border-color: #CCC;
 
+    height: 30px;
+    width:82%;
+  }
+  input[type='checkbox'] {
+    float: left;
+  }
+  span {
+    float: left;
+  }
+  .formArea {
+    padding: 20px;
+  }
+  .buttons{
+      clear: both;
+      text-align: center;
+      button {
+        background-color: #F54343;
 
-
-
+        color: white;
+        width: 120px;
+        height: 30px;
+        border: none;
+        margin: 20px;
+      }
+  }
 }

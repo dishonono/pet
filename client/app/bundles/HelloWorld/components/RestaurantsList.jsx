@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Restaurant from './Restaurant.jsx';
 import {ACTION_TYPES} from './Filter.jsx';
+import { withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
 
 export default class RestaurantsList extends React.Component {
 
@@ -35,6 +36,8 @@ export default class RestaurantsList extends React.Component {
   }
 
 
+
+
     render() {
 
         const filteredRestaurants  = this.getFilteredData();
@@ -61,9 +64,42 @@ export default class RestaurantsList extends React.Component {
                 )}
               </div>
               <div className="mapWrapper">
-                  TODO!
+              <GettingStartedGoogleMap
+                  containerElement={
+                    <div style={{ height: `100%` , position: 'relative', top: 0, right: 0, bottom: 0, left: 0}} />
+                  }
+                  mapElement={
+                    <div style={{ height: `100%` }} />
+                  }
+                  markers={filteredRestaurants.map(rest => {
+                    if(rest.geo) {
+                      const latlng = rest.geo.split(',');
+                      return {position: {lat: parseFloat(latlng[0]), lng: parseFloat(latlng[1])},
+                              title: rest.name
+
+                              };
+                    }
+                  })
+                  }
+                />
+
               </div>
             </div>
         );
     }
 }
+
+const GettingStartedGoogleMap = withGoogleMap(props => (
+  <GoogleMap
+    ref={props.onMapLoad}
+    defaultZoom={12}
+    defaultCenter={{ lat: 32.1, lng: 34.8 }}
+    onClick={props.onMapClick}
+    >
+    {props.markers.map((marker, index) =>
+      (<Marker key={'marker'+index} label={labels[index]}  {...marker} />)
+    )}
+  </GoogleMap>
+  ));
+
+const labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
