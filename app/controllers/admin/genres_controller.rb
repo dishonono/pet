@@ -3,13 +3,11 @@ module Admin
     before_action :set_genre, only: [:show, :edit, :update, :destroy]
 
     # GET /genres
-    # GET /genres.json
     def index
       @genres = Genre.all
     end
 
     # GET /genres/1
-    # GET /genres/1.json
     def show
     end
 
@@ -23,7 +21,6 @@ module Admin
     end
 
     # POST /genres
-    # POST /genres.json
     def create
       @genre = Genre.new(genre_params)
 
@@ -37,7 +34,6 @@ module Admin
     end
 
     # PATCH/PUT /genres/1
-    # PATCH/PUT /genres/1.json
     def update
       respond_to do |format|
         if @genre.update(genre_params)
@@ -49,7 +45,6 @@ module Admin
     end
 
     # DELETE /genres/1
-    # DELETE /genres/1.json
     def destroy
       @genre.destroy
       respond_to do |format|
