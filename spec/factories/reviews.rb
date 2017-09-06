@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :review do
-    name "MyString"
-    restaurant nil
-    rating 1
+    name { FFaker::Name.name }
+    text {'very good place'}
+    rating {2}
   end
 end
