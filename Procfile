@@ -1,1 +1,1 @@
-web: foreman start -f Procfile.dev
+web: bundle exec puma -C config/puma.rb
