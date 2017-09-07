@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 export default class NewRestaurantModal extends React.Component {
 
   static propTypes = {
-      isOpen : PropTypes.bool.isRequired,
-      closeModal: PropTypes.func.isRequired,
-      onAdd: PropTypes.func.isRequired,
+      modalIsOpen : PropTypes.bool.isRequired,
+      setModalOpen: PropTypes.func.isRequired,
+      addRestaurant: PropTypes.func.isRequired,
       ratingVals: PropTypes.array.isRequired,
       ratingKeys: PropTypes.array.isRequired,
       genreKeys:PropTypes.array.isRequired,
@@ -40,8 +40,8 @@ export default class NewRestaurantModal extends React.Component {
           if (response.status === 200) {
             return response.json().then((data) => {
               this.setState({errors: ''});
-              this.props.onAdd(data);
-              this.props.closeModal();
+              this.props.addRestaurant(data);
+              this.props.setModalOpen(false);
             })
           } else {
             return response.json().then((data) => {
@@ -58,7 +58,7 @@ export default class NewRestaurantModal extends React.Component {
 
 
     render() {
-     return <Modal isOpen={this.props.isOpen}
+     return <Modal isOpen={this.props.modalIsOpen}
                   contentLabel="Add Restaurant"
                 style={{
   overlay : {
@@ -114,7 +114,7 @@ export default class NewRestaurantModal extends React.Component {
          <span>Accepts 10Bis?</span>
          </div>
          <div className="buttons">
-          <button type="button" onClick={this.props.closeModal}>Cancel</button>
+          <button type="button" onClick={(e)=>this.props.setModalOpen(false)}>Cancel</button>
           <button type="submit">Save</button>
          </div>
        </form>

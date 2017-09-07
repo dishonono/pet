@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  #get 'pet_index', to: 'pet_index#index'
 
   root 'pet_index#index'
 

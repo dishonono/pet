@@ -13,7 +13,7 @@ export default class Filter extends React.Component {
         field: PropTypes.string.isRequired,
         keys: PropTypes.array.isRequired,
         values: PropTypes.array,
-        update: PropTypes.func.isRequired
+        filterUpdate: PropTypes.func.isRequired
     };
 
     constructor(props) {
@@ -24,15 +24,7 @@ export default class Filter extends React.Component {
     }
 
 
-    updateFilters = (field, value) => {
-        //sends to the component update handler a 'redux like' action of the filter state
-        const action =   {
-            type: this.state.numeric ? ACTION_TYPES.NUMERIC_FIELD_UPDATE : ACTION_TYPES.TEXT_FIELD_UPDATE,
-            field,
-            value
-        };
-        this.props.update(action);
-    };
+    
 
     componentWillReceiveProps(nextProps) {
         this.setState( {

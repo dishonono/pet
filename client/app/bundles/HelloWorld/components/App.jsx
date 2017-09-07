@@ -13,80 +13,57 @@ export default class App extends React.Component {
      */
     constructor(props, _railsContext) {
         super(props);
-
-         this.state = {restaurants:[], genres:[], filters:{}, modalIsOpen: false}
     }
 
     componentWillMount() {
         fetch ('/api/v1/restaurants')
             .then((response) => response.json())
             .then((responseJson) => {
-                this.setState({restaurants: responseJson, filtered:responseJson.slice(0)})
+                this.props.restaurantsArrived( responseJson);
 
             });
         fetch ('/api/v1/genres')
             .then((response) => response.json())
             .then((responseJson) => {
-                this.setState({genres: responseJson})
-
+                this.props.genresArrived( responseJson);
             });
     }
 
-    updateFilters = (filterAction) => {
-        this.setState((prevState, props) => ({
-          filters: {...prevState.filters, [filterAction.field]: filterAction }
-            })
-        );
-
-    };
-
-    openModal = () => {
-      this.setState({modalIsOpen: true});
-    };
-    closeModal = () => {
-      this.setState({modalIsOpen: false});
-    };
-
-    addRestaurant = (newRest) => {
-      this.setState((prevState, props) => ({
-        restaurants: [...prevState.restaurants, newRest]
-      }));
-    };
 
     render() {
 
-        if (this.state.restaurants && this.state.genres) {
+        if (this.props.restaurants && this.props.genres) {
           const ratingKeys = [1,2,3];
           const ratingVals = ["★","★★","★★★"];
-          const genreKeys  = this.state.genres.map(genre => genre.id);
-          const genreVals  = this.state.genres.map(genre => genre.name);
+          const genreKeys  = this.props.genres.map(genre => genre.id);
+          const genreVals  = this.props.genres.map(genre => genre.name);
           return (
               <div id="wrapper">
                   <div id="header">
-                      <div id="addBtn" onClick={this.openModal}/>
+                      <div id="addBtn" onClick={(e) => this.props.setModalOpen(true)}/>
                       <h1>WeEat</h1>
                       <h2>It’s 12:00 and you’re hungry</h2>
                       <div id="findWrapperDiv">
                           <AutoCompleteFilter field="name" hint="Find a restaurant"
-                                          update={this.updateFilters}
-                                          keys={this.state.restaurants.map(rest => rest.name)}/>
+                                          filterUpdate={this.props.filterUpdate}
+                                          keys={this.props.restaurants.map(rest => rest.name)}/>
                       </div>
                   </div>
                   <div id="filtersWrapperDiv">
                       <div id="filtersContentDiv">
                           <SelectFilter title="Cuisine" field="genre_id"  hint="humburger, Asian, Salads..."
-                                        update={this.updateFilters}
+                                        filterUpdate={this.props.filterUpdate}
                                         keys={genreKeys}
                                         values={genreVals}/>
 
                           <SelectFilter title="Rating" field="rating" hint="How many stars..."
-                                  update={this.updateFilters}
+                                  filterUpdate={this.props.filterUpdate}
                                   keys={ratingKeys}
                                   values={ratingVals}/>
 
 
                           <SelectFilter title="Speed" field="max_delivery_time"  hint="humburger, Asian, Salads..."
-                                        update={this.updateFilters}
+                                        filterUpdate={this.props.filterUpdate}
                                         keys={[1,2,3]}
                                         values={["★","★★","★★★"]}/>
 
@@ -95,17 +72,17 @@ export default class App extends React.Component {
 
                   <div id="canvas">
                       <RestaurantsList id="restaurantsList"
-                                       restaurants={this.state.restaurants}
-                                       genres={this.state.genres}
-                                       filters={this.state.filters}
+                                       restaurants={this.props.restaurants}
+                                       genres={this.props.genres}
+                                       filters={this.props.filters}
                       />
 
 
                   </div>
 
-                <NewRestaurantModal  isOpen={this.state.modalIsOpen}
-                 onAdd={this.addRestaurant}
-                 closeModal={this.closeModal}
+                <NewRestaurantModal  modalIsOpen={this.props.modalIsOpen}
+                 addRestaurant={this.props.addRestaurant}
+                 setModalOpen={this.props.setModalOpen}
                  ratingKeys={ratingKeys}
                  ratingVals={ratingVals}
                  genreKeys={genreKeys}

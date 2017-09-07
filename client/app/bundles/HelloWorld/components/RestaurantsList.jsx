@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Restaurant from './Restaurant.jsx';
-import {ACTION_TYPES} from './Filter.jsx';
 import { withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
+import * as constants from '../constants/appConstants';
 
 export default class RestaurantsList extends React.Component {
 
@@ -21,9 +21,9 @@ export default class RestaurantsList extends React.Component {
         const expected = rest[filterAction.field]
         let res = true;
         if (filterAction.value) {
-          if (filterAction.type==ACTION_TYPES.NUMERIC_FIELD_UPDATE) {
+          if (filterAction.filterType==constants.NUMERIC_FILTER) {
             res = (expected == parseInt(filterAction.value));
-          } else if (filterAction.type==ACTION_TYPES.TEXT_FIELD_UPDATE) {
+          } else if (filterAction.filterType==constants.TEXT_FILTER) {
             res = expected.toLowerCase().includes(filterAction.value.toLowerCase());
           } else {
             throw "Unknown filter action type";

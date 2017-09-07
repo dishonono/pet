@@ -12,6 +12,6 @@ class Restaurant < ApplicationRecord
   attr_reader :rating
 
   def rating
-    reviews.average(:rating)
+    reviews.average(:rating).to_f
   end
 end
