@@ -10,7 +10,12 @@ FactoryGirl.define do
     end
 
     after(:create) do |restaurant, evaluator|
-      create_list(:review, evaluator.reviews_count, restaurant: restaurant)
+      #create_list(:review, evaluator.reviews_count, restaurant: restaurant, rating: evaluator)
+      create(:review, restaurant: restaurant, rating: 1)
+      create(:review, restaurant: restaurant, rating: 2)
+      create(:review, restaurant: restaurant, rating: 3)
+      create(:review, restaurant: restaurant, rating: 1)
+      create(:review, restaurant: restaurant, rating: 3)
     end
   end
 end

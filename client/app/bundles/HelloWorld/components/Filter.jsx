@@ -16,24 +16,5 @@ export default class Filter extends React.Component {
         filterUpdate: PropTypes.func.isRequired
     };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            numeric:  false
-        };
-    }
-
-
-    
-
-    componentWillReceiveProps(nextProps) {
-        this.setState( {
-            //checks that all the keys are numeric, if so, field is numeric
-            numeric:  nextProps.keys.reduce(
-                (res,key) => res && typeof(key)==="number"
-                , true)
-        });
-    }
-
-
+  
 }

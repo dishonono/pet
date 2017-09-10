@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe Restaurant, type: :model do
 
-  context "init without name" do
-    it 'fails validations' do
+  context "review score" do
+    it 'should be average of childs' do
       rest = FactoryGirl.create(:restaurant)
       expect(rest.rating()).to eq(2)
     end
