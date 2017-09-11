@@ -7,7 +7,7 @@ const { resolve } = require('path');
 
 const ManifestPlugin = require('webpack-manifest-plugin');
 const webpackConfigLoader = require('react-on-rails/webpackConfigLoader');
-
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const configPath = resolve('..', 'config');
 const { devBuild, manifest, webpackOutputPath, webpackPublicOutputDir } =
   webpackConfigLoader(configPath);
@@ -44,6 +44,7 @@ const config = {
       DEBUG: false,
     }),
     new ManifestPlugin({ fileName: manifest, writeToFileEmit: true }),
+
   ],
 
   module: {
@@ -63,6 +64,11 @@ const config = {
         use: 'babel-loader',
         exclude: /node_modules/,
       },
+      {
+          test: /\.css$/,
+          loader: 'style-loader!css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]'
+      },
+
     ],
   },
 };
